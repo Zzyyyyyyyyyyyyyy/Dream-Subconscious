@@ -1,0 +1,74 @@
+﻿<!doctype html>
+<html lang="en" data-theme="editorial">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dream Subconscious — Surreal Landscapes</title>
+  <link href="https://unpkg.com/open-props@1.6.5/open-props.min.css" rel="stylesheet">
+  <link href="./styles/main.css" rel="stylesheet">
+  <script src="./scripts/main.js" type="module" defer></script>
+  
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <h1 class="site-header__title">Dream Subconscious</h1>
+      <nav class="site-header__nav" aria-label="Primary" data-animate="nav">
+        <ul class="site-header__menu">
+          <li class="site-header__menu-item">
+            <a class="site-header__link" data-animate="nav-link" aria-current="page" href="./index.html">Surreal Landscapes</a>
+          </li>
+          <li class="site-header__menu-item">
+            <a class="site-header__link" data-animate="nav-link" href="./page-2.html">Human Dream Fragments</a>
+          </li>
+          <li class="site-header__menu-item">
+            <a class="site-header__link" data-animate="nav-link" href="./page-3.html">Nightmares &amp; Chaos</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="surreal" data-block="surreal" aria-labelledby="surreal-title" data-reveal="section">
+      <h2 id="surreal-title" class="surreal__heading">Surreal Landscapes</h2>
+      <div class="surreal__grid">
+        <article class="surreal__card" data-role="card" data-flipped="false" aria-labelledby="surreal-card-1-title" data-reveal="item">
+          <div class="surreal__card-inner">
+            <figure class="surreal__face surreal__face--front">
+              <img class="surreal__image" src="./assets/images/placeholder-floating-island.svg" alt="Floating island above a surreal sky">
+              <button class="surreal__flip" data-action="flip-card" aria-pressed="false" type="button">Flip</button>
+            </figure>
+            <div class="surreal__face surreal__face--back" aria-live="polite">
+              <h3 id="surreal-card-1-title" class="surreal__title">Surreal Landscapes</h3>
+              <p class="surreal__prompt">floating island, impossible geology, surreal sky</p>
+              <p class="surreal__quote">Have you ever seen the sky split?</p>
+              <button class="surreal__flip" data-action="flip-card" aria-pressed="false" type="button">Flip</button>
+            </div>
+          </div>
+        </article>
+
+        <figure class="surreal__element surreal__element--clock" data-float data-reveal="item">
+          <img class="surreal__image" src="./assets/images/placeholder-floating-island.svg" alt="Melting clock fragment">
+        </figure>
+        <figure class="surreal__element surreal__element--crack" data-float data-reveal="item">
+          <img class="surreal__image" src="./assets/images/placeholder-floating-island.svg" alt="Sky fissure crack">
+        </figure>
+        <figure class="surreal__shard surreal__shard--a" data-float data-reveal="item">
+          <img class="surreal__image" src="./assets/images/placeholder-floating-island.svg" alt="Glass shard A">
+        </figure>
+        <figure class="surreal__shard surreal__shard--b" data-float data-reveal="item">
+          <img class="surreal__image" src="./assets/images/placeholder-floating-island.svg" alt="Glass shard B">
+        </figure>
+        <figure class="surreal__shard surreal__shard--c" data-float data-reveal="item">
+          <img class="surreal__image" src="./assets/images/placeholder-floating-island.svg" alt="Glass shard C">
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="site-footer__legal">Minimal scaffold. Structure over style.</p>
+  </footer>
+</body>
+</html>

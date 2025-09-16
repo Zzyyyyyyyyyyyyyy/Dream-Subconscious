@@ -1,0 +1,209 @@
+﻿// scripts/main.js
+// ES module entry. Behavior is minimal and focuses on structure.
+// Organization: constants → setup → bindings → DOM updates.
+
+// ----------------------------
+// Constants (selectors, events)
+// ----------------------------
+const SELECTORS = {
+  root: '#main',
+  blocks: {
+    timeline: '[data-block="timeline"]',
+    surreal: '[data-block="surreal"]',
+    chaos: '[data-block="chaos"]'
+  },
+  actions: {
+    toggleItem: '[data-action="toggle-item"]',
+    flipCard: '[data-action="flip-card"]',
+    enterChaos: '[data-action="enter-chaos"]',
+    fearReveal: '[data-action="fear-reveal"]'
+  }
+};
+
+// ----------------------------
+// Init
+// ----------------------------
+function init() {
+  const root = document.querySelector(SELECTORS.root);
+  if (!root) return;
+
+  const timelineRoot = root.querySelector(SELECTORS.blocks.timeline);
+  if (timelineRoot) initTimeline(timelineRoot);
+
+  const surrealRoot = root.querySelector(SELECTORS.blocks.surreal);
+  if (surrealRoot) initSurreal(surrealRoot);
+
+  const chaosRoot = root.querySelector(SELECTORS.blocks.chaos);
+  if (chaosRoot) initChaos(chaosRoot);
+}
+
+// ----------------------------
+// Timeline Block
+// Keep queries scoped to the block root.
+// Use event delegation for dynamic children.
+// ----------------------------
+function initTimeline(blockRoot) {
+  // Bind events
+  blockRoot.addEventListener('click', onTimelineClick);
+
+  // Example update function (no visual side-effects)
+  function onTimelineClick(event) {
+    const control = event.target.closest(SELECTORS.actions.toggleItem);
+    if (!control || !blockRoot.contains(control)) return;
+    event.preventDefault();
+
+    // Update DOM: toggle aria-pressed to reflect state.
+    const pressed = control.getAttribute('aria-pressed') === 'true';
+    control.setAttribute('aria-pressed', String(!pressed));
+    // Future enhancement: toggle a BEM state class on the nearest item.
+    // const item = control.closest('.timeline__item');
+    // if (item) item.classList.toggle('timeline__item--active', !pressed);
+  }
+}
+
+// ----------------------------
+// Surreal Block (Page 1)
+// Features: parallax tilt, light-follow, flip-card, breeze drift
+// Keep queries scoped to block root; use data-* hooks only.
+// ----------------------------
+function initSurreal(blockRoot) {
+  const card = blockRoot.querySelector('[data-role="card"]');
+  if (!card) return;
+
+  // Breeze: assign random motion to floaters
+  const floaters = blockRoot.querySelectorAll('[data-float]');
+  floaters.forEach((el, i) => {
+    const tx = (Math.random() * 4 - 2).toFixed(2) + '%'; // -2%..2%
+    const ty = (Math.random() * 4 - 2).toFixed(2) + '%'; // -2%..2%
+    const dur = (8 + Math.random() * 8).toFixed(2) + 's';
+    const delay = (Math.random() * 4).toFixed(2) + 's';
+    el.style.setProperty('--tx', tx);
+    el.style.setProperty('--ty', ty);
+    el.style.setProperty('--dur', dur);
+    el.style.setProperty('--delay', delay);
+  });
+
+  // Parallax tilt + light-follow
+  let raf = null;
+  let lastEvent = null;
+
+  function applyPointerEffects() {
+    if (!lastEvent) return;
+    const rect = card.getBoundingClientRect();
+    const x = Math.max(0, Math.min(lastEvent.clientX - rect.left, rect.width));
+    const y = Math.max(0, Math.min(lastEvent.clientY - rect.top, rect.height));
+    const px = x / rect.width;  // 0..1
+    const py = y / rect.height; // 0..1
+
+    const TILT = 10; // degrees max
+    const rx = (0.5 - py) * TILT; // invert Y for natural tilt
+    const ry = (px - 0.5) * TILT;
+
+    card.style.setProperty('--rx', rx.toFixed(2) + 'deg');
+    card.style.setProperty('--ry', ry.toFixed(2) + 'deg');
+    card.style.setProperty('--mx', (px * 100).toFixed(2) + '%');
+    card.style.setProperty('--my', (py * 100).toFixed(2) + '%');
+    raf = null;
+  }
+
+  function onPointerMove(e) {
+    lastEvent = e;
+    if (raf) return;
+    raf = requestAnimationFrame(applyPointerEffects);
+  }
+
+  function onPointerLeave() {
+    lastEvent = null;
+    card.style.setProperty('--rx', '0deg');
+    card.style.setProperty('--ry', '0deg');
+    card.style.setProperty('--mx', '50%');
+    card.style.setProperty('--my', '50%');
+  }
+
+  blockRoot.addEventListener('pointermove', onPointerMove);
+  blockRoot.addEventListener('pointerleave', onPointerLeave);
+
+  // Flip card via delegation
+  blockRoot.addEventListener('click', (event) => {
+    const btn = event.target.closest(SELECTORS.actions.flipCard);
+    if (!btn || !blockRoot.contains(btn)) return;
+    event.preventDefault();
+    const flipped = card.getAttribute('data-flipped') === 'true';
+    card.setAttribute('data-flipped', flipped ? 'false' : 'true');
+    btn.setAttribute('aria-pressed', String(!flipped));
+  });
+}
+
+// ----------------------------
+// Chaos Block (Page 3)
+// Interactions: Enter Chaos (shatter→grid), Panic Mode (P), Fear Reveal (hold)
+// ----------------------------
+function initChaos(blockRoot) {
+  // State helpers
+  const setState = (cls, on) => blockRoot.classList.toggle(cls, on);
+  const hasState = (cls) => blockRoot.classList.contains(cls);
+
+  // Defaults
+  setState('chaos--drift', true);
+
+  // Delegated clicks
+  blockRoot.addEventListener('click', (event) => {
+    const enter = event.target.closest(SELECTORS.actions.enterChaos);
+    if (enter && blockRoot.contains(enter)) {
+      event.preventDefault();
+      const toGrid = !hasState('chaos--grid');
+      // brief shatter pulse can be represented by toggling drift quickly
+      setState('chaos--drift', !toGrid);
+      setState('chaos--grid', toGrid);
+      enter.setAttribute('aria-pressed', String(toGrid));
+      return;
+    }
+  });
+
+  // Fear Reveal: press and hold
+  let revealPressed = false;
+  function startReveal() {
+    revealPressed = true;
+    setState('chaos--reveal', true);
+    const btn = blockRoot.querySelector(SELECTORS.actions.fearReveal);
+    if (btn) btn.setAttribute('aria-pressed', 'true');
+  }
+  function endReveal() {
+    if (!revealPressed) return;
+    revealPressed = false;
+    setState('chaos--reveal', false);
+    const btn = blockRoot.querySelector(SELECTORS.actions.fearReveal);
+    if (btn) btn.setAttribute('aria-pressed', 'false');
+  }
+
+  blockRoot.addEventListener('pointerdown', (e) => {
+    const btn = e.target.closest(SELECTORS.actions.fearReveal);
+    if (btn && blockRoot.contains(btn)) {
+      e.preventDefault();
+      startReveal();
+    }
+  });
+  blockRoot.addEventListener('pointerup', endReveal);
+  blockRoot.addEventListener('pointercancel', endReveal);
+  blockRoot.addEventListener('pointerleave', endReveal);
+
+  // Panic Mode: toggle with P key
+  function onKey(e) {
+    if (e.key && e.key.toLowerCase() === 'p') {
+      const on = !hasState('chaos--panic');
+      setState('chaos--panic', on);
+    }
+  }
+  document.addEventListener('keydown', onKey);
+}
+
+// ----------------------------
+// Utilities
+// ----------------------------
+export function greetUser(name) {
+  console.log(`Welcome, ${name}`);
+}
+
+// Boot
+init();
+

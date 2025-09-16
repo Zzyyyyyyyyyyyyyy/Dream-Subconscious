@@ -1,0 +1,504 @@
+/*
+  styles/main.css
+  Structure-first CSS (no visual tokens like colors/sizes).
+  Order:
+  1) Reset
+  2) Base / Typography
+  3) Layout
+  4) Components / Blocks (BEM)
+  5) Utilities
+*/
+
+/* 1) Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body, h1, h2, h3, p, ul, ol, li, figure {
+  margin: 0;
+  padding: 0;
+}
+
+/* 2) Base / Typography (generic tags only) */
+body {
+  line-height: 1.5;
+}
+
+ul, ol {
+  list-style-position: inside;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* 3) Layout */
+main {
+  display: block;
+}
+
+section {
+  display: block;
+}
+
+/* 4) Components / Blocks (BEM) */
+
+/* Block: site-header (parent)
+   Children: .site-header__inner, .site-header__title, .site-header__nav, .site-header__menu, .site-header__menu-item, .site-header__link
+   Notes: Modern, minimal, grid-based header. Structure-first (layout/spacing only).
+*/
+.site-header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 50;
+  border-block-end: 1px solid var(--border, currentColor);
+}
+.site-header__inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding-block: 0.75rem;
+  padding-inline: 1rem;
+  max-inline-size: 80rem;
+  margin-inline: auto;
+}
+.site-header__title {
+  font-size: 1.125rem;
+  line-height: 1.2;
+}
+.site-header__nav { }
+.site-header__menu {
+  display: inline-flex;
+  gap: 0.25rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.site-header__menu-item { }
+.site-header__link {
+  display: inline-block;
+  padding-block: 0.5rem;
+  padding-inline: 0.75rem;
+  border-radius: var(--radius-m, 6px);
+  text-decoration: none;
+  line-height: 1;
+  outline: none;
+}
+.site-header__link:focus-visible {
+  outline: 2px solid var(--ring, currentColor);
+  outline-offset: 2px;
+}
+
+/* Block: feature (parent)
+   Children: .feature__heading, .feature__content, .feature__text, .feature__figure, .feature__image, .feature__caption
+   Modifiers: .feature--compact (example)
+*/
+.feature {}
+.feature__heading {}
+.feature__content {}
+.feature__text {}
+.feature__figure {}
+.feature__image {}
+.feature__caption {}
+.feature--compact {}
+
+/* Block: timeline (parent)
+   Children: .timeline__heading, .timeline__list, .timeline__item, .timeline__label, .timeline__action
+   States:   .timeline__item--active (example)
+*/
+.timeline {}
+.timeline__heading {}
+.timeline__list {}
+.timeline__item {}
+.timeline__label {}
+.timeline__action {}
+.timeline__item--active {}
+
+/* Block: site-footer (parent)
+   Children: .site-footer__legal
+*/
+.site-footer {}
+.site-footer__legal {}
+
+/* Block: surreal (parent)
+   Children: .surreal__heading, .surreal__grid, .surreal__card, .surreal__card-inner, .surreal__face, .surreal__image, .surreal__element, .surreal__shard
+   Modifiers: .surreal__element--clock, .surreal__element--crack, .surreal__shard--a, .surreal__shard--b, .surreal__shard--c
+   States:   [data-flipped="true"] (on .surreal__card)
+*/
+.surreal {
+  min-height: 100vh; /* full-viewport section */
+}
+
+.surreal__heading {}
+
+.surreal__grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(8, minmax(0, 1fr));
+  gap: 0;
+  align-items: stretch;
+  min-height: 100vh;
+}
+
+/* Card root acts as tilt container; inner handles flip */
+.surreal__card {
+  --rx: 0deg;
+  --ry: 0deg;
+  --mx: 50%;
+  --my: 50%;
+  grid-column: 3 / span 8;
+  grid-row: 2 / span 5;
+  perspective: 1000px;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.surreal__card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* Light-follow highlight (neutral) */
+  background: radial-gradient(closest-side at var(--mx) var(--my), rgba(255,255,255,0.25), rgba(255,255,255,0) 60%);
+  transform: translateZ(2px);
+}
+
+.surreal__card-inner {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 300ms ease;
+}
+
+[data-flipped="true"] > .surreal__card-inner {
+  transform: rotateY(180deg);
+}
+
+.surreal__face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+}
+
+.surreal__face--back {
+  transform: rotateY(180deg);
+  display: grid;
+  place-content: center;
+  gap: 0.5rem; /* structural spacing */
+}
+
+.surreal__flip {
+  position: absolute;
+  inset-block-end: 0.5rem;
+  inset-inline-end: 0.5rem;
+}
+
+.surreal__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Secondary elements layout */
+.surreal__element,
+.surreal__shard {
+  align-self: stretch;
+  justify-self: stretch;
+}
+
+.surreal__element--clock {
+  grid-column: 2 / span 2;
+  grid-row: 3 / span 2;
+}
+
+.surreal__element--crack {
+  grid-column: 10 / span 2;
+  grid-row: 2 / span 3;
+}
+
+.surreal__shard--a {
+  grid-column: 1 / span 2;
+  grid-row: 6 / span 2;
+}
+
+.surreal__shard--b {
+  grid-column: 6 / span 2;
+  grid-row: 1 / span 2;
+}
+
+.surreal__shard--c {
+  grid-column: 11 / span 2;
+  grid-row: 7 / span 2;
+}
+
+/* Breeze: small drift using CSS variables */
+.surreal__element[data-float],
+.surreal__shard[data-float] {
+  --tx: 0%;
+  --ty: 0%;
+  --dur: 12s;
+  --delay: 0s;
+  animation: surreal-float var(--dur) ease-in-out var(--delay) infinite alternate;
+}
+
+@keyframes surreal-float {
+  from { transform: translate(0%, 0%); }
+  to   { transform: translate(var(--tx), var(--ty)); }
+}
+
+/* Block: chaos (parent)
+   Children: .chaos__heading, .chaos__content, .chaos__controls, .chaos__btn, .chaos__hint,
+             .chaos__stage, .chaos__noise, .chaos__cracks, .chaos__fragments, .chaos__fragment,
+             .chaos__figure, .chaos__image, .chaos__copy, .chaos__line
+   States:   .chaos--drift, .chaos--grid, .chaos--reveal, .chaos--panic
+*/
+.chaos {}
+.chaos__heading {}
+.chaos__content {}
+.chaos__controls { display: flex; gap: 0.5rem; align-items: center; }
+.chaos__btn { cursor: pointer; }
+.chaos__hint { opacity: 0.8; }
+
+.chaos__stage { position: relative; min-height: 60vh; }
+.chaos__noise { position: absolute; inset: 0; pointer-events: none; opacity: 0.5; animation: chaos-pulse 1.8s ease-in-out infinite; }
+.chaos__cracks { position: absolute; inset: 0; pointer-events: none; opacity: 0; }
+
+.chaos__fragments { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+.chaos__fragment { will-change: transform; }
+.chaos__figure { }
+.chaos__image { width: 100%; height: 100%; object-fit: cover; }
+
+.chaos__copy { position: absolute; left: 0; right: 0; bottom: 0; display: grid; gap: 0.25rem; pointer-events: none; padding: 0.5rem; }
+.chaos__line {}
+
+/* States */
+.chaos--drift .chaos__fragment { animation: chaos-drift 6s ease-in-out infinite alternate; }
+.chaos--grid .chaos__fragment { animation: none; transform: none; }
+
+.chaos--reveal .chaos__noise { opacity: 1; }
+.chaos--reveal .chaos__cracks { opacity: 1; }
+
+.chaos--panic .chaos__stage { animation: chaos-shake 0.2s linear infinite; }
+.chaos--panic .chaos__noise { animation-duration: 0.9s; }
+
+/* Keyframes (structure-only motion) */
+@keyframes chaos-drift {
+  from { transform: translate(0%, 0%) rotate(-1deg); }
+  to   { transform: translate(2%, 1%) rotate(1deg); }
+}
+
+@keyframes chaos-shake {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-1%, 0); }
+  40% { transform: translate(1%, 0); }
+  60% { transform: translate(-1%, 0); }
+  80% { transform: translate(1%, 0); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes chaos-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+/* Block: thread (parent)
+   Children: .thread__heading, .thread__inner, .thread__timeline, .thread__dot, .thread__sentence
+   States:   [data-active="true"] on .thread__dot
+*/
+.thread {}
+.thread__heading {}
+.thread__inner {
+  display: grid;
+  row-gap: 0.75rem; /* structural spacing */
+}
+.thread__timeline {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  align-items: center;
+  column-gap: 1rem;
+}
+.thread__dot {
+  inline-size: 0.75rem;
+  aspect-ratio: 1 / 1;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  justify-self: center;
+}
+.thread__dot[data-active="true"] {
+  background: currentColor; /* structural only */
+}
+.thread__sentence {
+  min-block-size: 1.5em;
+}
+
+/* Block: fragments (parent)
+   Children: .fragments__heading, .fragments__grid, .fragments__card, .fragments__figure,
+             .fragments__img, .fragments__scratch, .fragments__caption, .fragments__select,
+             .fragments__title
+   Modifiers: .fragments__card--selected
+   Notes: Masonry via CSS columns; scratch uses a canvas overlay.
+*/
+.fragments {
+  position: relative;
+  padding-block: 1rem; /* structural spacing */
+}
+.fragments::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* Tilted fracture lines background (structural only) */
+  background-image: repeating-linear-gradient(-12deg, currentColor 0 1px, transparent 1px 18px);
+  opacity: 0.12;
+}
+.fragments__heading {}
+.fragments__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+  gap: 1rem;
+}
+.fragments__card {
+  break-inside: avoid;
+  margin-block: 0 1rem;
+  display: grid;
+  row-gap: 0.5rem;
+}
+.fragments__card--selected {
+  outline: 2px solid currentColor;
+}
+.fragments__figure { position: relative; }
+.fragments__img {
+  inline-size: 100%;
+  block-size: auto;
+  object-fit: cover;
+}
+.fragments__scratch {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  filter: blur(6px); /* blurred overlay to erase */
+  touch-action: none;
+}
+.fragments__caption { display: flex; justify-content: flex-end; }
+.fragments__select {}
+.fragments__title { display: inline-block; }
+.fragments__title [data-frag-char] {
+  display: inline-block;
+  transition: transform 200ms ease;
+}
+/* Simple scatter pattern on hover (re-aggregates on mouseout) */
+.fragments__card:hover .fragments__title [data-frag-char]:nth-child(odd) { transform: translateY(-0.15em) rotate(-4deg); }
+.fragments__card:hover .fragments__title [data-frag-char]:nth-child(even) { transform: translateY(0.15em) rotate(4deg); }
+
+/* 5) Utilities / Helpers (single‑purpose) */
+/* Add project utilities here when needed (e.g., alignment helpers). */
+
+/* Utilities: reveal-on-scroll default state */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+  will-change: opacity, transform;
+  transition: opacity 600ms var(--ease-out-3, cubic-bezier(.21,.9,.31,1)),
+              transform 600ms var(--ease-out-3, cubic-bezier(.21,.9,.31,1));
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal][data-revealed="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Theme: Editorial (print-like, low-saturation, no glass/neon) */
+html[data-theme="editorial"] {
+  --bg: #f8f5ef;
+  --bg-muted: #f4efe5;
+  --surface: #fffdf8;
+  --text: #222222;
+  --text-muted: #57534e;
+  --primary: #8b5e3c; /* warm brown */
+  --primary-600: #7a5336;
+  --secondary: #2f5d56; /* ink green */
+  --ring: rgba(47, 93, 86, 0.35);
+  --border: #e6dfd2;
+  --shadow: none; /* minimize depth */
+  --radius-s: 4px;
+  --radius-m: 6px;
+  --radius-l: 10px;
+}
+
+html[data-theme="editorial"] body {
+  background:
+    linear-gradient(to bottom, var(--bg), var(--bg-muted));
+}
+
+html[data-theme="editorial"] .site-header {
+  background: var(--surface);
+  backdrop-filter: none;
+  border-bottom: 1px solid var(--border);
+}
+html[data-theme="editorial"] .site-header__title {
+  background: none;
+  color: var(--text);
+  letter-spacing: 0;
+  font-weight: 800;
+}
+html[data-theme="editorial"] .site-header__link[aria-current="page"],
+html[data-theme="editorial"] .site-header__link:hover {
+  background: color-mix(in oklab, var(--primary) 10%, transparent);
+}
+
+/* Cards and surfaces flatten */
+html[data-theme="editorial"] .feature__content,
+html[data-theme="editorial"] .timeline__item,
+html[data-theme="editorial"] .thread__inner,
+html[data-theme="editorial"] .fragments__card,
+html[data-theme="editorial"] .surreal__card-inner {
+  box-shadow: none;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+/* Buttons soften */
+html[data-theme="editorial"] .timeline__action,
+html[data-theme="editorial"] .fragments__select,
+html[data-theme="editorial"] .surreal__flip,
+html[data-theme="editorial"] .chaos__btn {
+  background: color-mix(in oklab, var(--primary) 8%, transparent);
+  border-color: color-mix(in oklab, var(--primary) 35%, var(--border));
+}
+
+/* Surreal highlight neutral */
+html[data-theme="editorial"] .surreal__card::after {
+  background: radial-gradient(closest-side at var(--mx) var(--my), color-mix(in oklab, var(--text) 6%, transparent), transparent 60%);
+}
+
+/* Fragments background lines vertical rhythm */
+html[data-theme="editorial"] .fragments::before {
+  background-image: repeating-linear-gradient(180deg, var(--border) 0 1px, transparent 1px 24px);
+  opacity: 0.25;
+}
+
+/* Chaos stage: less neon, more hatch */
+html[data-theme="editorial"] .chaos__stage {
+  background:
+    linear-gradient(180deg, #262522, #1f1e1b);
+  border: 1px solid #3a382f;
+  box-shadow: none;
+}
+html[data-theme="editorial"] .chaos__noise {
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0 2px, transparent 2px 4px);
+  opacity: 0.25;
+}
+html[data-theme="editorial"] .chaos__cracks {
+  background-image: repeating-linear-gradient(115deg, rgba(255,255,255,0.08) 0 1px, transparent 1px 18px);
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Placeholder image representing a dream fragment">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 H0 V40" fill="none" stroke="#cccccc" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="800" fill="#f2f2f2"/>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+  <g transform="skewX(-10)">
+    <rect x="200" y="120" width="800" height="560" fill="none" stroke="#999" stroke-width="4" stroke-dasharray="12 10"/>
+  </g>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" fill="#666">
+    Dream Fragment Placeholder
+  </text>
+</svg>
+
