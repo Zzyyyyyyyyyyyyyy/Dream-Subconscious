@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dream Subconscious ¡ª Human Dream Fragments</title>
+  <title>Dream Subconscious ï¿½ï¿½ Human Dream Fragments</title>
   <link href="https://unpkg.com/open-props@1.6.5/open-props.min.css" rel="stylesheet">
   <link href="./styles/main.css" rel="stylesheet">
   <script src="./scripts/page-2.js" type="module" defer></script>
@@ -37,7 +37,13 @@
           <span class="thread__dot" data-reveal="item"></span>
           <span class="thread__dot" data-reveal="item"></span>
         </div>
-        <p class="thread__sentence" data-thread="sentence"></p>
+        <div class="thread__display">
+          <p class="thread__label">Active fragment</p>
+          <p class="thread__active-title" data-thread="active-title"></p>
+          <p class="thread__active-whisper" data-thread="active-whisper"></p>
+          <ul class="thread__selected" data-thread="selected-chips" aria-live="polite" aria-label="Selected fragments"></ul>
+          <p class="thread__sentence" data-thread="sentence"></p>
+        </div>
       </div>
     </section>
 
@@ -47,7 +53,6 @@
         <article class="fragments__card" data-card="item" data-id="f1" data-reveal="item">
           <figure class="fragments__figure">
             <img class="fragments__img" src="./assets/images/Test.png" alt="Silhouettes on a bridge at dusk">
-            <canvas class="fragments__scratch" data-layer="scratch"></canvas>
           </figure>
           <figcaption class="fragments__caption">
             <button class="fragments__select" data-action="select-card" aria-pressed="false" type="button">Select</button>
@@ -58,7 +63,6 @@
         <article class="fragments__card" data-card="item" data-id="f2" data-reveal="item">
           <figure class="fragments__figure">
             <img class="fragments__img" src="./assets/images/Test.png" alt="Empty street lights reflecting on wet asphalt">
-            <canvas class="fragments__scratch" data-layer="scratch"></canvas>
           </figure>
           <figcaption class="fragments__caption">
             <button class="fragments__select" data-action="select-card" aria-pressed="false" type="button">Select</button>
@@ -69,7 +73,6 @@
         <article class="fragments__card" data-card="item" data-id="f3" data-reveal="item">
           <figure class="fragments__figure">
             <img class="fragments__img" src="./assets/images/Test.png" alt="Paper moon garlands over a quiet room">
-            <canvas class="fragments__scratch" data-layer="scratch"></canvas>
           </figure>
           <figcaption class="fragments__caption">
             <button class="fragments__select" data-action="select-card" aria-pressed="false" type="button">Select</button>
@@ -80,7 +83,6 @@
         <article class="fragments__card" data-card="item" data-id="f4" data-reveal="item">
           <figure class="fragments__figure">
             <img class="fragments__img" src="./assets/images/Test.png" alt="A hallway with too many doors">
-            <canvas class="fragments__scratch" data-layer="scratch"></canvas>
           </figure>
           <figcaption class="fragments__caption">
             <button class="fragments__select" data-action="select-card" aria-pressed="false" type="button">Select</button>
@@ -91,7 +93,6 @@
         <article class="fragments__card" data-card="item" data-id="f5" data-reveal="item">
           <figure class="fragments__figure">
             <img class="fragments__img" src="./assets/images/Test.png" alt="An empty platform under pale sky">
-            <canvas class="fragments__scratch" data-layer="scratch"></canvas>
           </figure>
           <figcaption class="fragments__caption">
             <button class="fragments__select" data-action="select-card" aria-pressed="false" type="button">Select</button>
@@ -102,7 +103,6 @@
         <article class="fragments__card" data-card="item" data-id="f6" data-reveal="item">
           <figure class="fragments__figure">
             <img class="fragments__img" src="./assets/images/Test.png" alt="Footprints fading into morning fog">
-            <canvas class="fragments__scratch" data-layer="scratch"></canvas>
           </figure>
           <figcaption class="fragments__caption">
             <button class="fragments__select" data-action="select-card" aria-pressed="false" type="button">Select</button>
@@ -129,4 +129,3 @@
   </footer>
 </body>
 </html>
-

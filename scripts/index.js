@@ -1,4 +1,4 @@
-﻿// scripts/index.js
+// scripts/index.js
 // Module for the Surreal Landscapes page.
 
 import { initReveals, initGsap } from './common.js';
@@ -6,10 +6,25 @@ import { initReveals, initGsap } from './common.js';
 const ROOT_SELECTOR = '#main';
 const BLOCK_SELECTOR = '[data-block="surreal"]';
 const ACTIONS = {
-  flipCard: '[data-action="flip-card"]',
   setTone: '[data-action="set-tone"]',
-  shuffleSurreal: '[data-action="shuffle-surreal"]'
+  shuffleSurreal: '[data-action="shuffle-surreal"]',
+  toggleLoop: '[data-action="toggle-loop"]'
 };
+
+const SELECTORS = {
+  card: '[data-role="card"]',
+  windows: '[data-role="windows"]',
+  window: '[data-window]',
+  windowTitle: '[data-role="window-title"]',
+  windowPrompt: '[data-role="window-prompt"]',
+  windowQuote: '[data-role="window-quote"]',
+  controls: '[data-role="controls"]',
+  status: '[data-role="status"]',
+  floaters: '[data-float]'
+};
+
+const LOOP_INTERVAL = 8000;
+const MAX_WINDOWS = 3;
 
 const SURREAL_TONES = {
   dawn: {
@@ -108,21 +123,31 @@ function init() {
 }
 
 function initSurreal(blockRoot) {
-  const card = blockRoot.querySelector('[data-role="card"]');
+  const card = blockRoot.querySelector(SELECTORS.card);
   if (!card) return;
 
-  const floaters = blockRoot.querySelectorAll('[data-float]');
-  const promptEl = card.querySelector('.surreal__prompt');
-  const quoteEl = card.querySelector('.surreal__quote');
-  const titleEl = card.querySelector('.surreal__title');
-  const controlsRoot = blockRoot.querySelector('[data-role="controls"]');
+  const windowsRoot = card.querySelector(SELECTORS.windows);
+  const windowEls = windowsRoot ? Array.from(windowsRoot.querySelectorAll(SELECTORS.window)) : [];
+  const windows = windowEls.map((el) => ({
+    el,
+    titleEl: el.querySelector(SELECTORS.windowTitle),
+    promptEl: el.querySelector(SELECTORS.windowPrompt),
+    quoteEl: el.querySelector(SELECTORS.windowQuote)
+  }));
+
+  const floaters = blockRoot.querySelectorAll(SELECTORS.floaters);
+  const controlsRoot = blockRoot.querySelector(SELECTORS.controls);
   const toneSelect = controlsRoot ? controlsRoot.querySelector(ACTIONS.setTone) : null;
-  const statusEl = blockRoot.querySelector('[data-role="status"]');
+  const loopToggle = controlsRoot ? controlsRoot.querySelector(ACTIONS.toggleLoop) : null;
+  const statusEl = blockRoot.querySelector(SELECTORS.status);
 
   const state = {
     tone: toneSelect && toneSelect.value ? toneSelect.value : 'dawn',
     lastPreset: null,
-    announceFrame: null
+    announceFrame: null,
+    stream: [],
+    loopActive: false,
+    loopTimer: null
   };
 
   const hasTone = (name) => Object.prototype.hasOwnProperty.call(SURREAL_TONES, name);
@@ -164,13 +189,49 @@ function initSurreal(blockRoot) {
     });
   }
 
-  function applyPreset(preset, announceChange = true) {
-    if (!preset) return;
-    if (titleEl) titleEl.textContent = preset.title;
-    if (promptEl) promptEl.textContent = preset.prompt;
-    if (quoteEl) quoteEl.textContent = preset.quote;
-    state.lastPreset = preset.id;
-    if (announceChange && preset.status) announce(preset.status);
+  function renderStream(options = {}) {
+    const { animate = false } = options;
+    if (!windows.length) return;
+
+    windows.forEach((slot, index) => {
+      const preset = state.stream[index];
+      const position = preset ? (index < MAX_WINDOWS ? String(index) : 'off') : 'off';
+      slot.el.setAttribute('data-position', position);
+      slot.el.setAttribute('data-active', index === 0 ? 'true' : 'false');
+      if (preset) {
+        if (slot.titleEl) slot.titleEl.textContent = preset.title;
+        if (slot.promptEl) slot.promptEl.textContent = preset.prompt;
+        if (slot.quoteEl) slot.quoteEl.textContent = preset.quote;
+        if (index === 0) {
+          slot.el.setAttribute('aria-hidden', 'false');
+          if (animate) pulseWindow(slot.el);
+        } else {
+          slot.el.setAttribute('aria-hidden', 'true');
+        }
+      } else {
+        if (slot.titleEl) slot.titleEl.textContent = '';
+        if (slot.promptEl) slot.promptEl.textContent = '';
+        if (slot.quoteEl) slot.quoteEl.textContent = '';
+        slot.el.setAttribute('aria-hidden', 'true');
+      }
+    });
+  }
+
+  function pulseWindow(el) {
+    el.setAttribute('data-pulse', 'true');
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        el.removeAttribute('data-pulse');
+      });
+    });
+  }
+
+  function seedStreamForTone(toneKey) {
+    const cfg = getToneConfig(toneKey);
+    const presets = Array.isArray(cfg.presets) ? cfg.presets.slice(0, MAX_WINDOWS) : [];
+    state.stream = presets;
+    state.lastPreset = presets.length ? presets[0].id : null;
+    renderStream({ animate: false });
   }
 
   function setTone(nextTone, options = {}) {
@@ -179,12 +240,11 @@ function initSurreal(blockRoot) {
     state.tone = toneKey;
     blockRoot.setAttribute('data-tone', toneKey);
     if (toneSelect && toneSelect.value !== toneKey) toneSelect.value = toneKey;
-    refreshFloaters(getToneConfig(toneKey));
+    const cfg = getToneConfig(toneKey);
+    refreshFloaters(cfg);
     state.lastPreset = null;
-    if (options.announceTone !== false) {
-      const cfg = getToneConfig(toneKey);
-      if (cfg.description) announce(cfg.description);
-    }
+    if (options.reseed !== false) seedStreamForTone(toneKey);
+    if (options.announceTone !== false && cfg.description) announce(cfg.description);
   }
 
   function pickPreset() {
@@ -200,81 +260,91 @@ function initSurreal(blockRoot) {
     return pool[index];
   }
 
+  function presentPreset(preset, options = {}) {
+    if (!preset) return;
+    state.lastPreset = preset.id;
+    state.stream = [preset, ...state.stream].slice(0, MAX_WINDOWS);
+    renderStream({ animate: options.animate !== false });
+    if (options.announce !== false && preset.status) announce(preset.status);
+  }
+
   function shuffleFragment(options = {}) {
     const preset = pickPreset();
-    if (preset) applyPreset(preset, options.announce !== false);
+    if (preset) {
+      presentPreset(preset, options);
+      if (state.loopActive) restartLoopTimer();
+    }
+  }
+
+  function startLoop() {
+    if (state.loopActive) return;
+    state.loopActive = true;
+    updateLoopToggle();
+    announce('Loop started: fragments will surface automatically.');
+    restartLoopTimer();
+  }
+
+  function stopLoop() {
+    if (!state.loopActive) return;
+    state.loopActive = false;
+    if (state.loopTimer) {
+      clearTimeout(state.loopTimer);
+      state.loopTimer = null;
+    }
+    updateLoopToggle();
+    announce('Loop paused: pull fragments whenever you like.');
+  }
+
+  function restartLoopTimer() {
+    if (!state.loopActive) return;
+    if (state.loopTimer) {
+      clearTimeout(state.loopTimer);
+      state.loopTimer = null;
+    }
+    state.loopTimer = setTimeout(() => {
+      state.loopTimer = null;
+      shuffleFragment({ announce: false });
+      restartLoopTimer();
+    }, LOOP_INTERVAL);
+  }
+
+  function updateLoopToggle() {
+    if (!loopToggle) return;
+    loopToggle.setAttribute('aria-pressed', state.loopActive ? 'true' : 'false');
+    loopToggle.textContent = state.loopActive ? 'Pause loop' : 'Start loop';
   }
 
   if (controlsRoot) {
     controlsRoot.addEventListener('change', (event) => {
       const select = event.target.closest(ACTIONS.setTone);
       if (!select || !controlsRoot.contains(select)) return;
-      setTone(select.value);
-      shuffleFragment();
+      setTone(select.value, { announceTone: true, reseed: true });
+      if (state.loopActive) restartLoopTimer();
     });
 
     controlsRoot.addEventListener('click', (event) => {
-      const btn = event.target.closest(ACTIONS.shuffleSurreal);
-      if (!btn || !controlsRoot.contains(btn)) return;
+      const shuffleBtn = event.target.closest(ACTIONS.shuffleSurreal);
+      if (shuffleBtn && controlsRoot.contains(shuffleBtn)) {
+        event.preventDefault();
+        shuffleFragment({ announce: true, animate: true });
+        return;
+      }
+
+      const loopBtn = event.target.closest(ACTIONS.toggleLoop);
+      if (!loopBtn || !controlsRoot.contains(loopBtn)) return;
       event.preventDefault();
-      shuffleFragment();
+      if (state.loopActive) {
+        stopLoop();
+      } else {
+        startLoop();
+      }
     });
   }
 
-  setTone(state.tone, { announceTone: false });
+  setTone(state.tone, { announceTone: false, reseed: true });
   const initialConfig = getToneConfig(state.tone);
-  if (initialConfig.presets && initialConfig.presets.length) {
-    applyPreset(initialConfig.presets[0], false);
-  }
   if (initialConfig.description) announce(initialConfig.description);
-
-  let raf = null;
-  let lastEvent = null;
-
-  function applyPointerEffects() {
-    if (!lastEvent) return;
-    const rect = card.getBoundingClientRect();
-    const x = Math.max(0, Math.min(lastEvent.clientX - rect.left, rect.width));
-    const y = Math.max(0, Math.min(lastEvent.clientY - rect.top, rect.height));
-    const px = x / rect.width;
-    const py = y / rect.height;
-
-    const TILT = 10;
-    const rx = (0.5 - py) * TILT;
-    const ry = (px - 0.5) * TILT;
-
-    card.style.setProperty('--rx', `${rx.toFixed(2)}deg`);
-    card.style.setProperty('--ry', `${ry.toFixed(2)}deg`);
-    card.style.setProperty('--mx', `${(px * 100).toFixed(2)}%`);
-    card.style.setProperty('--my', `${(py * 100).toFixed(2)}%`);
-    raf = null;
-  }
-
-  function onPointerMove(event) {
-    lastEvent = event;
-    if (raf) return;
-    raf = requestAnimationFrame(applyPointerEffects);
-  }
-
-  function onPointerLeave() {
-    lastEvent = null;
-    card.style.setProperty('--rx', '0deg');
-    card.style.setProperty('--ry', '0deg');
-    card.style.setProperty('--mx', '50%');
-    card.style.setProperty('--my', '50%');
-  }
-
-  blockRoot.addEventListener('pointermove', onPointerMove);
-  blockRoot.addEventListener('pointerleave', onPointerLeave);
-
-  blockRoot.addEventListener('click', (event) => {
-    const btn = event.target.closest(ACTIONS.flipCard);
-    if (!btn || !blockRoot.contains(btn)) return;
-    event.preventDefault();
-    const flipped = card.getAttribute('data-flipped') === 'true';
-    card.setAttribute('data-flipped', flipped ? 'false' : 'true');
-    btn.setAttribute('aria-pressed', String(!flipped));
-  });
+  renderStream({ animate: false });
 }
 
 init();

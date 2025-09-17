@@ -33,18 +33,26 @@
     <section class="surreal" data-block="surreal" aria-labelledby="surreal-title" data-reveal="section">
       <h2 id="surreal-title" class="surreal__heading">Surreal Landscapes</h2>
       <div class="surreal__grid">
-        <article class="surreal__card" data-role="card" data-flipped="false" aria-labelledby="surreal-card-1-title" data-reveal="item">
-          <div class="surreal__card-inner">
-            <figure class="surreal__face surreal__face--front">
-              <img class="surreal__image" src="./assets/images/Test.png" alt="Floating island above a surreal sky">
-              <button class="surreal__flip" data-action="flip-card" aria-pressed="false" type="button">Flip</button>
-            </figure>
-            <div class="surreal__face surreal__face--back" aria-live="polite">
-              <h3 id="surreal-card-1-title" class="surreal__title">Surreal Landscapes</h3>
-              <p class="surreal__prompt">floating island, impossible geology, surreal sky</p>
-              <p class="surreal__quote">Have you ever seen the sky split?</p>
-              <button class="surreal__flip" data-action="flip-card" aria-pressed="false" type="button">Flip</button>
-            </div>
+        <article class="surreal__card" data-role="card" aria-labelledby="surreal-card-1-title" data-reveal="item">
+          <figure class="surreal__visual">
+            <img class="surreal__image" src="./assets/images/Test.png" alt="Floating island above a surreal sky">
+          </figure>
+          <div class="surreal__windows" data-role="windows">
+            <article class="surreal__window" data-window="primary">
+              <h3 id="surreal-card-1-title" class="surreal__window-title" data-role="window-title">Surreal Landscapes</h3>
+              <p class="surreal__window-prompt" data-role="window-prompt">floating island, impossible geology, surreal sky</p>
+              <p class="surreal__window-quote" data-role="window-quote">Have you ever seen the sky split?</p>
+            </article>
+            <article class="surreal__window" data-window="secondary" aria-hidden="true">
+              <h3 class="surreal__window-title" data-role="window-title"></h3>
+              <p class="surreal__window-prompt" data-role="window-prompt"></p>
+              <p class="surreal__window-quote" data-role="window-quote"></p>
+            </article>
+            <article class="surreal__window" data-window="tertiary" aria-hidden="true">
+              <h3 class="surreal__window-title" data-role="window-title"></h3>
+              <p class="surreal__window-prompt" data-role="window-prompt"></p>
+              <p class="surreal__window-quote" data-role="window-quote"></p>
+            </article>
           </div>
         </article>
 
@@ -65,8 +73,8 @@
         </figure>
 
         <div class="surreal__controls" data-role="controls" data-reveal="item">
-          <h3 class="surreal__controls-title">Dream mixer</h3>
-          <p class="surreal__controls-copy">Choose a tone, then pull a fresh fragment for the card.</p>
+          <h3 class="surreal__controls-title">Dream stream</h3>
+          <p class="surreal__controls-copy">Choose a tone, then let the stream surface fragments or pull one yourself.</p>
           <div class="surreal__controls-fields">
             <label class="surreal__control">
               <span class="surreal__control-label">Tone</span>
@@ -78,6 +86,7 @@
             </label>
           </div>
           <button class="surreal__controls-button" data-action="shuffle-surreal" type="button">New fragment</button>
+          <button class="surreal__controls-button" data-action="toggle-loop" aria-pressed="false" type="button">Start loop</button>
           <output class="surreal__status" data-role="status" aria-live="polite"></output>
         </div>
       </div>
@@ -89,4 +98,3 @@
   </footer>
 </body>
 </html>
-

@@ -1,6 +1,12 @@
 # Changelog
 
 ## [Unreleased]
+- feat: reframe Human Dream Fragments as an active spotlight thread with halo interactions (`page-2.html`, `styles/main.css`, `scripts/page-2.js`).
+  - behavior: swapped scratch reveal for focus cycling, selection chips, and pointer-responsive halos managed in `scripts/page-2.js`.
+  - structure: refreshed thread markup with active copy panel and selection list; adjusted fragments block states and tokens in `styles/main.css`.
+- feat: reshape Nightmares & Chaos into a Nightmare Spotlight orbit with central void and echo ring (`page-3.html`, `styles/main.css`, `scripts/page-3.js`).
+  - behavior: replaced log pulses with sequential fragment spotlights and idle orbit loop in `scripts/page-3.js`.
+  - structure: introduced void/orbit/ring markup and refreshed chaos block layout styles to support the new presentation.
 - refactor: split page scripts into dedicated modules (`scripts/index.js`, `scripts/page-2.js`, `scripts/page-3.js`) and shared `scripts/common.js`; removed `scripts/main.js` and updated page includes.
 - feat: add `formatDate(date)` helper in `scripts/utils.js` to format dates as `YYYY-MM-DD`.
 - feat: add Page 2 `page-2.html` with Blocks `thread` and `fragments`; masonry layout, scratch-off reveal, story thread, text fragmentation, and optional audio slices; extend `styles/main.css` and `scripts/main.js`.
