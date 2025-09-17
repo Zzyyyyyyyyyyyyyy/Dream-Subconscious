@@ -51,8 +51,9 @@
 
     <main class="layout__content">
       <section class="section" data-aos="fade-up">
-        <div class="section__inner hero">
-          <div class="pulse-list" data-aos="fade-up" data-aos-delay="100">
+        <div class="section__inner hero" data-effects="on">
+          <div class="hero__canvas" data-hero-canvas aria-hidden="true"></div>
+          <div class="hero__content" data-aos="fade-up" data-aos-delay="100">
             <span class="hero__badge">Dream Atlas Release · 2024</span>
             <div class="section__headline">
               <span class="section__eyebrow">Cartography</span>
@@ -65,40 +66,78 @@
               <a class="button" href="page-2.html">Explore Resonance</a>
               <a class="button" href="page-3.html">View Chronicles</a>
             </div>
-            <div class="pulse-list__item">
-              <div class="pulse-list__icon">01</div>
-              <div class="card__text">
-                12,000 dream fragments sequenced into flowing routes of memory.
+            <div class="hero__pulse-group pulse-list">
+              <div class="pulse-list__item">
+                <div class="pulse-list__icon">01</div>
+                <div class="card__text">
+                  12,000 dream fragments sequenced into flowing routes of memory.
+                </div>
+              </div>
+              <div class="pulse-list__item">
+                <div class="pulse-list__icon">02</div>
+                <div class="card__text">
+                  Sensory gradients reveal how color, sound, and texture blend across emotional states.
+                </div>
+              </div>
+              <div class="pulse-list__item">
+                <div class="pulse-list__icon">03</div>
+                <div class="card__text">
+                  Temporal markers trace the cadence of recurring symbols through history.
+                </div>
               </div>
             </div>
-            <div class="pulse-list__item">
-              <div class="pulse-list__icon">02</div>
-              <div class="card__text">
-                Sensory gradients reveal how color, sound, and texture blend across emotional states.
-              </div>
-            </div>
-            <div class="pulse-list__item">
-              <div class="pulse-list__icon">03</div>
-              <div class="card__text">
-                Temporal markers trace the cadence of recurring symbols through history.
-              </div>
+            <div class="hero__cards" data-hero-cards>
+              <article class="flip-card" data-hero-card tabindex="0">
+                <div class="flip-card__inner">
+                  <div class="flip-card__face flip-card__face--front">
+                    <p class="flip-card__label">Dream Prompt</p>
+                    <h3 class="flip-card__title">Map the lucid shoreline</h3>
+                    <p class="flip-card__hint">Hover or tap to reveal the generative cue.</p>
+                  </div>
+                  <div class="flip-card__face flip-card__face--back">
+                    <p class="flip-card__prompt" data-prompt>
+                      "Sketch the coastline where waking thoughts dissolve into phosphorescent tides."
+                    </p>
+                    <button class="flip-card__copy" type="button" data-copy-button>
+                      Copy prompt
+                    </button>
+                  </div>
+                </div>
+              </article>
+              <article class="flip-card" data-hero-card tabindex="0">
+                <div class="flip-card__inner">
+                  <div class="flip-card__face flip-card__face--front">
+                    <p class="flip-card__label">Dream Prompt</p>
+                    <h3 class="flip-card__title">Bridge the starlit rift</h3>
+                    <p class="flip-card__hint">Flip to explore the guiding incantation.</p>
+                  </div>
+                  <div class="flip-card__face flip-card__face--back">
+                    <p class="flip-card__prompt" data-prompt>
+                      "Describe a suspended arch of light that breathes with the constellations it connects."
+                    </p>
+                    <button class="flip-card__copy" type="button" data-copy-button>
+                      Copy prompt
+                    </button>
+                  </div>
+                </div>
+              </article>
             </div>
           </div>
           <div class="hero__visual">
             <figure class="gallery__figure" data-aos="zoom-in" data-aos-delay="100">
-              <img src="assets/images/dream-01.svg" alt="Nebulous teal gradient" />
+              <img src="assets/images/Surreal Landscapes/Paint dreams into a topographic map.png" alt="Dreamscape of flowing topographic paint" />
               <figcaption class="gallery__caption">Signal blooms near lucid gateways.</figcaption>
             </figure>
             <figure class="gallery__figure" data-aos="zoom-in" data-aos-delay="150">
-              <img src="assets/images/dream-02.svg" alt="Violet wave pattern" />
+              <img src="assets/images/Surreal Landscapes/Starlight echoes across the bridge.png" alt="Suspended bridge echoing starlight" />
               <figcaption class="gallery__caption">Memory ripples echo midnight confidences.</figcaption>
             </figure>
             <figure class="gallery__figure" data-aos="zoom-in" data-aos-delay="200">
-              <img src="assets/images/dream-03.svg" alt="Deep indigo vortex" />
+              <img src="assets/images/Surreal Landscapes/The torn curtain of clouds is breathing.png" alt="Breathing curtain of clouds" />
               <figcaption class="gallery__caption">Recurring spirals chart ancestral stories.</figcaption>
             </figure>
             <figure class="gallery__figure" data-aos="zoom-in" data-aos-delay="250">
-              <img src="assets/images/dream-04.svg" alt="Cerulean gradient crater" />
+              <img src="assets/images/Surreal Landscapes/The city bends itself along the fissure.png" alt="City bending along a luminous fissure" />
               <figcaption class="gallery__caption">Heartbeat signatures traced along the horizon.</figcaption>
             </figure>
           </div>
@@ -116,34 +155,34 @@
           </div>
           <div class="gallery">
             <figure class="gallery__image" data-aos="fade-up" data-aos-delay="50">
-              <img src="assets/images/dream-05.svg" alt="Aurora gradient dreamscape" />
+              <img src="assets/images/Surreal Landscapes/Fragments stitch dreams inside the storm.png" alt="Fragments stitched into a stormy dream" />
             </figure>
             <figure class="gallery__image" data-aos="fade-up" data-aos-delay="80">
-              <img src="assets/images/dream-06.svg" alt="Azure and violet glow" />
+              <img src="assets/images/Surreal Landscapes/Have you ever seen the sky split open.png" alt="Sky split open with radiant light" />
             </figure>
             <figure class="gallery__image" data-aos="fade-up" data-aos-delay="110">
-              <img src="assets/images/dream-07.svg" alt="Opalescent nebula pattern" />
+              <img src="assets/images/Surreal Landscapes/Moonlight sets the tide for the pages.png" alt="Moonlight guiding tidal pages" />
             </figure>
             <figure class="gallery__image" data-aos="fade-up" data-aos-delay="140">
-              <img src="assets/images/dream-08.svg" alt="Iridescent sleep lens" />
+              <img src="assets/images/Surreal Landscapes/Time slowly melts at the island’s edge..png" alt="Island edge with melting time" />
             </figure>
             <figure class="gallery__image" data-aos="fade-up" data-aos-delay="170">
-              <img src="assets/images/dream-09.svg" alt="Universal tide gradient" />
+              <img src="assets/images/Surreal Landscapes/weightless garden grows from the Earth’s core..png" alt="Weightless garden growing from Earth's core" />
             </figure>
             <figure class="gallery__image" data-aos="fade-up" data-aos-delay="200">
-              <img src="assets/images/dream-10.svg" alt="Nocturnal echo texture" />
+              <img src="assets/images/Surreal Landscapes/Paint dreams into a topographic map.png" alt="Topographic dream map" />
             </figure>
             <figure class="gallery__image" data-aos="fade-up" data-aos-delay="230">
-              <img src="assets/images/dream-11.svg" alt="Subconscious ripple field" />
+              <img src="assets/images/Surreal Landscapes/Starlight echoes across the bridge.png" alt="Bridge carrying echoes of starlight" />
             </figure>
             <figure class="gallery__image" data-aos="fade-up" data-aos-delay="260">
-              <img src="assets/images/dream-12.svg" alt="Midnight hush gradient" />
+              <img src="assets/images/Surreal Landscapes/The torn curtain of clouds is breathing.png" alt="Breathing curtain of clouds" />
             </figure>
             <figure class="gallery__image" data-aos="fade-up" data-aos-delay="290">
-              <img src="assets/images/dream-01.svg" alt="Nebulous teal gradient repeat" />
+              <img src="assets/images/Surreal Landscapes/Moonlight sets the tide for the pages.png" alt="Moonlit tide turning pages" />
             </figure>
             <figure class="gallery__image" data-aos="fade-up" data-aos-delay="320">
-              <img src="assets/images/dream-02.svg" alt="Violet wave pattern repeat" />
+              <img src="assets/images/Surreal Landscapes/Time slowly melts at the island’s edge..png" alt="Repeated scene of time melting at an island" />
             </figure>
           </div>
         </div>
@@ -196,6 +235,8 @@
       referrerpolicy="no-referrer"
     ></script>
     <script src="scripts/common.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+    <script src="scripts/p5-hero.js"></script>
     <script src="scripts/index.js"></script>
   </body>
 </html>
