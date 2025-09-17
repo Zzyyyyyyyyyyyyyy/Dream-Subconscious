@@ -1,0 +1,79 @@
+/* Page 2 specific styling */
+.synesthesia {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+.synesthesia__intro {
+  background: linear-gradient(140deg, rgba(76, 29, 149, 0.38), rgba(147, 51, 234, 0.48));
+  border-radius: clamp(1.25rem, 2.8vw, 2rem);
+  padding: clamp(2.5rem, 5vw, 4rem);
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2rem);
+}
+
+.synesthesia__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: clamp(1.25rem, 2.2vw, 1.75rem);
+}
+
+.synesthesia__stat {
+  border-radius: 1.2rem;
+  border: 1px solid rgba(192, 132, 252, 0.28);
+  padding: 1.5rem;
+  background: rgba(24, 10, 46, 0.78);
+}
+
+.synesthesia__value {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.mosaic {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2rem);
+}
+
+.mosaic__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.mosaic__card {
+  border-radius: 1.3rem;
+  border: 1px solid rgba(192, 132, 252, 0.35);
+  background: linear-gradient(160deg, rgba(147, 51, 234, 0.2), rgba(24, 10, 46, 0.82));
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+  display: grid;
+  gap: 1rem;
+}
+
+.stream {
+  border-radius: clamp(1.4rem, 3vw, 2.2rem);
+  overflow: hidden;
+  position: relative;
+  background: rgba(18, 6, 38, 0.68);
+  border: 1px solid rgba(192, 132, 252, 0.32);
+}
+
+.stream__marquee {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  animation: stream-slide 28s linear infinite;
+}
+
+.stream__slide {
+  padding: clamp(1.5rem, 3vw, 2rem);
+}
+
+@keyframes stream-slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
