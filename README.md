@@ -1,26 +1,26 @@
-ï»¿# Dream Subconscious â€” Web Experience Spec
+# Dream Subconscious ¡ª Web Experience Spec
 
 This document is the primary product spec for the site. It describes the narrative arc, layout language, interactions, and copy style across three pages. The underlying scaffold follows semantic HTML, BEM, and ES modules (see `AGENTS.md`).
 
 ## Experience Overview
 
-- Information Architecture: three pages move from order to disorder â€” Surreal Landscapes â†’ Human Dream Fragments â†’ Nightmares & Chaos.
+- Information Architecture: three pages move from order to disorder ¡ª Surreal Landscapes ¡ú Human Dream Fragments ¡ú Nightmares & Chaos.
 - Grid Language: Page 1 intact grid; Page 2 disrupted/broken grid; Page 3 collapsed/deformed grid.
-- Interaction Axis: Hover â†’ Click â†’ Shuffle.
+- Interaction Axis: Hover ¡ú Click ¡ú Shuffle.
 - Text Role: short, aphoristic lines as subconscious prompts.
 - Color Rhythm: Page 1 bright; Page 2 soft; Page 3 dark.
-- Motion Beat: slow-in â†’ subtle random microâ€‘motions â†’ urgent.
+- Motion Beat: slow-in ¡ú subtle random micro?motions ¡ú urgent.
 
 ## Navigation & Global
 
 - Top Navigation: Surreal Landscapes | Human Dream Fragments | Nightmares & Chaos.
-- Global Controls: bottomâ€‘right Shuffle; topâ€‘right Info.
-- Typography: titles â€” Playfair; body â€” Inter; prompts â€” IBM Plex Mono.
+- Global Controls: bottom?right Shuffle; top?right Info.
+- Typography: titles ¡ª Playfair; body ¡ª Inter; prompts ¡ª IBM Plex Mono.
 - Audio (optional): chime on hover; page flip on click; breathing sound on shuffle.
 
-## Page 1 â€” Surreal Landscapes
+## Page 1 ¡ª Surreal Landscapes
 
-- Layout: 12â€‘column Ã— 8â€‘row grid.
+- Layout: 12?column ¡Á 8?row grid.
 - Hero: floating island (large image).
 - Secondary: melting clocks, sky fissures, texture shards.
 - Interactions:
@@ -29,38 +29,38 @@ This document is the primary product spec for the site. It describes the narrati
   - Flip Card: front shows image; back reveals Prompt + short line.
   - Gentle Breeze: small random drift animations.
 - Copy Examples:
-  - Short line: â€œHave you ever seen the sky split?â€
-  - Prompt: â€œfloating island, impossible geology, surreal skyâ€.
+  - Short line: ¡°Have you ever seen the sky split?¡±
+  - Prompt: ¡°floating island, impossible geology, surreal sky¡±.
 
-## Page 2 â€” Human Dream Fragments
+## Page 2 ¡ª Human Dream Fragments
 
-- Layout: masonryâ€‘style irregular grid with slanted fracture lines in the background.
+- Layout: masonry?style irregular grid with slanted fracture lines in the background.
 - Interactions:
-  - Memory Erasure (scratchâ€‘off): drag/click to reveal a clean image.
+  - Memory Erasure (scratch?off): drag/click to reveal a clean image.
   - Story Thread: choose three cards; a dynamic timeline + generated sentence appears at the top.
-  - Text Fragmentation: hover scatters the text, then it reâ€‘aggregates.
+  - Text Fragmentation: hover scatters the text, then it re?aggregates.
   - Audio (optional): clicking a card triggers ambient sound slices.
 - Copy Examples:
-  - Card Title: â€œAn Uncertain Summerâ€.
-  - Generated Sentence: â€œI remember he never looked back, but the wind knew.â€
+  - Card Title: ¡°An Uncertain Summer¡±.
+  - Generated Sentence: ¡°I remember he never looked back, but the wind knew.¡±
 
-## Page 3 â€” Nightmares & Chaos
+## Page 3 ¡ª Nightmares & Chaos
 
 - Layout: freely drifting fragment layers over a dark, noisy background.
 - Interactions:
   - Enter Chaos: fragments crack, then reassemble into a deformed grid.
   - Panic Mode (P): screen shake + intensified noise.
-  - Fear Reveal (pressâ€‘andâ€‘hold): reveals cracks/noise layers.
+  - Fear Reveal (press?and?hold): reveals cracks/noise layers.
   - Heartbeat Pulse: background shadows breathe with rhythm.
   
 Implementation status (structure-first):
 - Added a `chaos` Block with semantic HTML and BEM in `page-3.html`.
 - Structural motion and states in `styles/main.css` (no visual theming yet).
-- Behavior wired in `scripts/main.js` using data-* hooks and delegation.
-- Controls: â€œEnter Chaosâ€ button, â€œFear Reveal (Hold)â€ button, and `P` key.
+- Behavior wired in `scripts/page-3.js` using data-* hooks and delegation.
+- Controls: ¡°Enter Chaos¡± button, ¡°Fear Reveal (Hold)¡± button, and `P` key.
 - Copy Examples:
-  - â€œNight keeps you hidden between its teeth.â€
-  - â€œWaking is another kind of fall.â€
+  - ¡°Night keeps you hidden between its teeth.¡±
+  - ¡°Waking is another kind of fall.¡±
 
 ## Shuffle
 
@@ -72,7 +72,7 @@ Implementation status (structure-first):
 
 ## Project Scaffold
 
-This repository is initialized as a clean, structureâ€‘first web project. The focus is on semantic HTML, strict parentâ€“child hierarchy, BEM naming, and clean separation of concerns across HTML/CSS/JS.
+This repository is initialized as a clean, structure?first web project. The focus is on semantic HTML, strict parent¨Cchild hierarchy, BEM naming, and clean separation of concerns across HTML/CSS/JS.
 
 ### Folder Layout
 
@@ -106,33 +106,33 @@ Pages:
 - Semantic HTML sections: `header`, `main`, `section`, `article`, `footer`, `nav`.
 - One `<h1>` per page; use `<h2>` for section headings inside Blocks.
 - BEM naming: `block`, `block__element`, `block--modifier`.
-- Each topâ€‘level `section` in `<main>` is a Block.
-- Use `data-*` attributes for JavaScript hooks; avoid classâ€‘based behavior.
+- Each top?level `section` in `<main>` is a Block.
+- Use `data-*` attributes for JavaScript hooks; avoid class?based behavior.
 - External links: `target="_blank"` and `rel="noopener noreferrer"`.
 - Images have meaningful `alt`; prefer `figure`/`figcaption` for captions.
 - HTML for structure, CSS for presentation, JS for behavior.
-- ES modules in `scripts/main.js`; prefer event delegation and scoped DOM queries.
+- ES modules in `scripts/page-3.js`; prefer event delegation and scoped DOM queries.
 
 For full details, see `AGENTS.md`.
 
-### Page 1 â€” Implementation Notes
+### Page 1 ¡ª Implementation Notes
 
 - Block: `.surreal` inside `main` (`#surreal`).
-- Layout: 12 Ã— 8 CSS Grid; main flip card centered; secondary elements positioned around.
-- Interactions (implemented in `scripts/main.js`):
+- Layout: 12 ¡Á 8 CSS Grid; main flip card centered; secondary elements positioned around.
+- Interactions (implemented in `scripts/page-3.js`):
   - Hover Parallax: card tilts subtly with cursor.
   - Light Follow: highlight tracks mouse via CSS variables.
-  - Flip Card: button toggles front image â†” back text (Prompt + short line).
+  - Flip Card: button toggles front image ? back text (Prompt + short line).
   - Breeze: secondary elements drift with randomized motion.
 - Placeholder asset: `assets/images/placeholder-floating-island.svg` (replace later).
 
-### Page 2 ï¿½ï¿½ Implementation Notes
+### Page 2 ?? Implementation Notes
 
 - Blocks: `.thread` (Story Thread) and `.fragments` (masonry grid).
 - Layout: CSS columns for masonry; tilted fracture lines rendered via `repeating-linear-gradient` background on `.fragments`.
-- Interactions (implemented in `scripts/main.js`):
-  - Memory Erasure: drag on each cardâ€™s canvas to reveal the clear image beneath (destination-out erasing).
-  - Story Thread: select three cards via the â€œé€‰æ‹©â€ button; three dots at the top fill left-to-right and the sentence appears.
+- Interactions (implemented in `scripts/page-3.js`):
+  - Memory Erasure: drag on each card¡¯s canvas to reveal the clear image beneath (destination-out erasing).
+  - Story Thread: select three cards via the ¡°Ñ¡Ôñ¡± button; three dots at the top fill left-to-right and the sentence appears.
   - Text Fragmentation: hovering a card scatters the title letters, then they re-aggregate on mouse out.
   - Audio (optional): selecting a card plays a short ambient slice via WebAudio (no external assets).
-- Copy: default card title is â€œä¸ç¡®å®šçš„å¤å¤©â€; generated sentence is â€œæˆ‘è®°å¾—ä»–ä»æœªå›å¤´ï¼Œä½†é£çŸ¥é“ã€‚â€
+- Copy: default card title is ¡°²»È·¶¨µÄÏÄÌì¡±; generated sentence is ¡°ÎÒ¼ÇµÃËû´ÓÎ´»ØÍ·£¬µ«·çÖªµÀ¡£¡±

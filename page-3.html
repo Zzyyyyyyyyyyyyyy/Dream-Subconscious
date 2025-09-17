@@ -1,12 +1,12 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en" data-theme="editorial">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dream Subconscious — Nightmares &amp; Chaos</title>
+  <title>Dream Subconscious �� Nightmares &amp; Chaos</title>
   <link href="https://unpkg.com/open-props@1.6.5/open-props.min.css" rel="stylesheet">
   <link href="./styles/main.css" rel="stylesheet">
-  <script src="./scripts/main.js" type="module" defer></script>
+  <script src="./scripts/page-3.js" type="module" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -36,7 +36,13 @@
         <div class="chaos__controls" role="group" aria-label="Chaos Controls">
             <button class="chaos__btn" data-action="enter-chaos" aria-pressed="false" type="button">Enter Chaos</button>
             <button class="chaos__btn" data-action="fear-reveal" aria-pressed="false" type="button">Fear Reveal (Hold)</button>
-          <span class="chaos__hint" aria-hidden="true">Press “P” to toggle Panic</span>
+            <button class="chaos__btn" data-action="chaos-echo" aria-pressed="false" type="button">Summon Echo</button>
+          <span class="chaos__hint" aria-hidden="true">Press "P" to toggle Panic</span>
+        </div>
+
+        <div class="chaos__console" data-chaos="console">
+          <p class="chaos__whisper" data-chaos="whisper" aria-live="polite">Echoes wait for your command.</p>
+          <ol class="chaos__log" data-chaos="log" aria-label="Echo Log" aria-live="polite" role="log"></ol>
         </div>
 
         <div class="chaos__stage" aria-live="polite">
@@ -46,32 +52,32 @@
           <div class="chaos__fragments">
               <article class="chaos__fragment" data-reveal="item">
                 <figure class="chaos__figure">
-                  <img class="chaos__image" src="./assets/images/placeholder.svg" alt="Shadowed figure behind frosted glass">
+                  <img class="chaos__image" src="./assets/images/Test.png" alt="Shadowed figure behind frosted glass">
                 </figure>
               </article>
               <article class="chaos__fragment" data-reveal="item">
                 <figure class="chaos__figure">
-                  <img class="chaos__image" src="./assets/images/placeholder.svg" alt="Cracked mirror with distant lights">
+                  <img class="chaos__image" src="./assets/images/Test.png" alt="Cracked mirror with distant lights">
                 </figure>
               </article>
               <article class="chaos__fragment" data-reveal="item">
                 <figure class="chaos__figure">
-                  <img class="chaos__image" src="./assets/images/placeholder.svg" alt="A corridor narrowing to darkness">
+                  <img class="chaos__image" src="./assets/images/Test.png" alt="A corridor narrowing to darkness">
                 </figure>
               </article>
               <article class="chaos__fragment" data-reveal="item">
                 <figure class="chaos__figure">
-                  <img class="chaos__image" src="./assets/images/placeholder.svg" alt="Distorted city skyline at night">
+                  <img class="chaos__image" src="./assets/images/Test.png" alt="Distorted city skyline at night">
                 </figure>
               </article>
               <article class="chaos__fragment" data-reveal="item">
                 <figure class="chaos__figure">
-                  <img class="chaos__image" src="./assets/images/placeholder.svg" alt="Teeth-like mountains under a red moon">
+                  <img class="chaos__image" src="./assets/images/Test.png" alt="Teeth-like mountains under a red moon">
                 </figure>
               </article>
               <article class="chaos__fragment" data-reveal="item">
                 <figure class="chaos__figure">
-                  <img class="chaos__image" src="./assets/images/placeholder.svg" alt="Waves frozen mid-crash">
+                  <img class="chaos__image" src="./assets/images/Test.png" alt="Waves frozen mid-crash">
                 </figure>
               </article>
           </div>
@@ -90,3 +96,4 @@
   </footer>
 </body>
 </html>
+

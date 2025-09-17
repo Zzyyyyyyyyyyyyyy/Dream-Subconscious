@@ -1,8 +1,10 @@
 # Changelog
 
 ## [Unreleased]
+- refactor: split page scripts into dedicated modules (`scripts/index.js`, `scripts/page-2.js`, `scripts/page-3.js`) and shared `scripts/common.js`; removed `scripts/main.js` and updated page includes.
 - feat: add `formatDate(date)` helper in `scripts/utils.js` to format dates as `YYYY-MM-DD`.
- - feat: add Page 2 `page-2.html` with Blocks `thread` and `fragments`; masonry layout, scratch-off reveal, story thread, text fragmentation, and optional audio slices; extend `styles/main.css` and `scripts/main.js`.
+- feat: add Page 2 `page-2.html` with Blocks `thread` and `fragments`; masonry layout, scratch-off reveal, story thread, text fragmentation, and optional audio slices; extend `styles/main.css` and `scripts/main.js`.
+- feat: add Dream Ledger notes block on Page 2 (`page-2.html`) to archive generated thread sentences; structured styles in `styles/main.css` and logic in `scripts/main.js`.
 - feat: add Chaos block (Page 3) in `index.html` with interactions (Enter Chaos, Panic Mode via `P`, Fear Reveal hold) per `AGENTS.md` conventions.
   - styles added under `styles/main.css` (chaos block section).
   - behavior wired in `scripts/main.js` (`initChaos`).

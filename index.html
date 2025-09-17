@@ -1,12 +1,12 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en" data-theme="editorial">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dream Subconscious — Surreal Landscapes</title>
+  <title>Dream Subconscious &mdash; Surreal Landscapes</title>
   <link href="https://unpkg.com/open-props@1.6.5/open-props.min.css" rel="stylesheet">
   <link href="./styles/main.css" rel="stylesheet">
-  <script src="./scripts/main.js" type="module" defer></script>
+  <script src="./scripts/index.js" type="module" defer></script>
   
 </head>
 <body>
@@ -36,7 +36,7 @@
         <article class="surreal__card" data-role="card" data-flipped="false" aria-labelledby="surreal-card-1-title" data-reveal="item">
           <div class="surreal__card-inner">
             <figure class="surreal__face surreal__face--front">
-              <img class="surreal__image" src="./assets/images/placeholder-floating-island.svg" alt="Floating island above a surreal sky">
+              <img class="surreal__image" src="./assets/images/Test.png" alt="Floating island above a surreal sky">
               <button class="surreal__flip" data-action="flip-card" aria-pressed="false" type="button">Flip</button>
             </figure>
             <div class="surreal__face surreal__face--back" aria-live="polite">
@@ -49,20 +49,37 @@
         </article>
 
         <figure class="surreal__element surreal__element--clock" data-float data-reveal="item">
-          <img class="surreal__image" src="./assets/images/placeholder-floating-island.svg" alt="Melting clock fragment">
+          <img class="surreal__image" src="./assets/images/Test.png" alt="Melting clock fragment">
         </figure>
         <figure class="surreal__element surreal__element--crack" data-float data-reveal="item">
-          <img class="surreal__image" src="./assets/images/placeholder-floating-island.svg" alt="Sky fissure crack">
+          <img class="surreal__image" src="./assets/images/Test.png" alt="Sky fissure crack">
         </figure>
         <figure class="surreal__shard surreal__shard--a" data-float data-reveal="item">
-          <img class="surreal__image" src="./assets/images/placeholder-floating-island.svg" alt="Glass shard A">
+          <img class="surreal__image" src="./assets/images/Test.png" alt="Glass shard A">
         </figure>
         <figure class="surreal__shard surreal__shard--b" data-float data-reveal="item">
-          <img class="surreal__image" src="./assets/images/placeholder-floating-island.svg" alt="Glass shard B">
+          <img class="surreal__image" src="./assets/images/Test.png" alt="Glass shard B">
         </figure>
         <figure class="surreal__shard surreal__shard--c" data-float data-reveal="item">
-          <img class="surreal__image" src="./assets/images/placeholder-floating-island.svg" alt="Glass shard C">
+          <img class="surreal__image" src="./assets/images/Test.png" alt="Glass shard C">
         </figure>
+
+        <div class="surreal__controls" data-role="controls" data-reveal="item">
+          <h3 class="surreal__controls-title">Dream mixer</h3>
+          <p class="surreal__controls-copy">Choose a tone, then pull a fresh fragment for the card.</p>
+          <div class="surreal__controls-fields">
+            <label class="surreal__control">
+              <span class="surreal__control-label">Tone</span>
+              <select class="surreal__control-input" data-action="set-tone">
+                <option value="dawn" selected>Dawn</option>
+                <option value="dusk">Dusk</option>
+                <option value="storm">Storm</option>
+              </select>
+            </label>
+          </div>
+          <button class="surreal__controls-button" data-action="shuffle-surreal" type="button">New fragment</button>
+          <output class="surreal__status" data-role="status" aria-live="polite"></output>
+        </div>
       </div>
     </section>
   </main>
@@ -72,3 +89,4 @@
   </footer>
 </body>
 </html>
+
