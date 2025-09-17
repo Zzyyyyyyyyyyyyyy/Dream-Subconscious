@@ -51,100 +51,181 @@
 
     <main class="layout__content">
       <section class="section" data-aos="fade-up">
-        <div class="section__inner synesthesia">
-          <div class="synesthesia__intro" data-aos="zoom-in">
-            <div class="section__headline">
-              <span class="section__eyebrow">Resonance Lab</span>
-              <h1 class="section__title">Decode how senses braid together inside shared dreams</h1>
-              <p class="section__description">
-                The lab orchestrates chromatic and auditory traces to reveal how the subconscious syncs strangers into common narratives. Drift through sensory synesthesia maps that pair mood shifts with texture gradients.
+        <div class="section__inner">
+          <div class="dream-thread" data-dream-thread>
+            <div class="dream-thread__inner">
+              <div class="dream-thread__slots" role="list">
+                <button
+                  class="dream-thread__slot"
+                  type="button"
+                  data-thread-slot
+                  data-placeholder="槽位一"
+                  aria-label="故事槽位一"
+                >
+                  槽位一
+                </button>
+                <button
+                  class="dream-thread__slot"
+                  type="button"
+                  data-thread-slot
+                  data-placeholder="槽位二"
+                  aria-label="故事槽位二"
+                >
+                  槽位二
+                </button>
+                <button
+                  class="dream-thread__slot"
+                  type="button"
+                  data-thread-slot
+                  data-placeholder="槽位三"
+                  aria-label="故事槽位三"
+                >
+                  槽位三
+                </button>
+              </div>
+              <p class="dream-thread__sentence" data-thread-sentence aria-live="polite">
+                选择三段梦境碎片以编织故事。
               </p>
-            </div>
-            <div class="synesthesia__stats">
-              <div class="synesthesia__stat" data-aos="fade-up" data-aos-delay="80">
-                <span class="synesthesia__value">63%</span>
-                <p class="card__text">Dreams with recurring oceanic timbres when paired with turquoise light.</p>
-              </div>
-              <div class="synesthesia__stat" data-aos="fade-up" data-aos-delay="120">
-                <span class="synesthesia__value">42%</span>
-                <p class="card__text">Sequences that shift from whisper to crescendo within eight seconds.</p>
-              </div>
-              <div class="synesthesia__stat" data-aos="fade-up" data-aos-delay="160">
-                <span class="synesthesia__value">19</span>
-                <p class="card__text">Unique scent motifs archived from lucid botanist recordings.</p>
-              </div>
+              <button class="dream-thread__clear" type="button" data-thread-clear aria-label="清除梦境线程">
+                一键清空
+              </button>
             </div>
           </div>
 
-          <div class="mosaic" data-aos="fade-up">
+          <div class="dream-cards" data-dream-cards>
             <div class="section__headline">
-              <span class="section__eyebrow">Sensory Mosaic</span>
-              <h2 class="section__title">Ten gradients mapping the liminal senses</h2>
+              <span class="section__eyebrow">Resonance Stories</span>
+              <h2 class="section__title">Assemble the subconscious thread</h2>
               <p class="section__description">
-                Each tile is a sensory chord compressed into color, representing how audio, tactile pressure, and emotional cadence intertwine before waking.
+                Select fragments to weave a collective resonance narrative. Scratch the surface to reveal hidden detail; queue three cards to listen for emergent motifs.
               </p>
             </div>
-            <div class="mosaic__grid">
-              <figure class="gallery__figure" data-aos="zoom-in">
-                <img src="assets/images/dream-03.svg" alt="Gradient tile one" />
-                <figcaption class="gallery__caption">Lucid ripple → Tide murmur.</figcaption>
-              </figure>
-              <figure class="gallery__figure" data-aos="zoom-in" data-aos-delay="40">
-                <img src="assets/images/dream-04.svg" alt="Gradient tile two" />
-                <figcaption class="gallery__caption">Silver fog → Choir ascent.</figcaption>
-              </figure>
-              <figure class="gallery__figure" data-aos="zoom-in" data-aos-delay="80">
-                <img src="assets/images/dream-05.svg" alt="Gradient tile three" />
-                <figcaption class="gallery__caption">Amber pulse → Meadow hush.</figcaption>
-              </figure>
-              <figure class="gallery__figure" data-aos="zoom-in" data-aos-delay="120">
-                <img src="assets/images/dream-06.svg" alt="Gradient tile four" />
-                <figcaption class="gallery__caption">Cobalt wind → Lantern chime.</figcaption>
-              </figure>
-              <figure class="gallery__figure" data-aos="zoom-in" data-aos-delay="160">
-                <img src="assets/images/dream-07.svg" alt="Gradient tile five" />
-                <figcaption class="gallery__caption">Velvet dusk → Resonant echo.</figcaption>
-              </figure>
-              <figure class="gallery__figure" data-aos="zoom-in" data-aos-delay="200">
-                <img src="assets/images/dream-08.svg" alt="Gradient tile six" />
-                <figcaption class="gallery__caption">Glimmer rain → Laughter trail.</figcaption>
-              </figure>
-              <figure class="gallery__figure" data-aos="zoom-in" data-aos-delay="240">
-                <img src="assets/images/dream-09.svg" alt="Gradient tile seven" />
-                <figcaption class="gallery__caption">Ink swell → Hollow drum.</figcaption>
-              </figure>
-              <figure class="gallery__figure" data-aos="zoom-in" data-aos-delay="280">
-                <img src="assets/images/dream-10.svg" alt="Gradient tile eight" />
-                <figcaption class="gallery__caption">Opal shimmer → Cloud choir.</figcaption>
-              </figure>
-              <figure class="gallery__figure" data-aos="zoom-in" data-aos-delay="320">
-                <img src="assets/images/dream-11.svg" alt="Gradient tile nine" />
-                <figcaption class="gallery__caption">Aurora thread → Timber breath.</figcaption>
-              </figure>
-              <figure class="gallery__figure" data-aos="zoom-in" data-aos-delay="360">
-                <img src="assets/images/dream-12.svg" alt="Gradient tile ten" />
-                <figcaption class="gallery__caption">Vapor bloom → Celeste hum.</figcaption>
-              </figure>
-            </div>
-          </div>
+            <div class="dream-cards__grid">
+              <article class="card dream-card" data-frag="潮汐敲响玻璃拱顶" data-time="00:42" tabindex="0">
+                <button class="dream-card__reset" type="button" data-card-reset aria-label="重置潮汐谐振卡片">重置</button>
+                <figure class="dream-card__media">
+                  <img
+                    src="assets/images/Surreal Landscapes/Time slowly melts at the island’s edge..png"
+                    alt="时间在岛屿边缘缓缓融化的梦境景观"
+                    loading="lazy"
+                  />
+                </figure>
+                <div class="dream-card__body">
+                  <h3 class="card__title">潮汐谐振</h3>
+                  <p class="card__text">月光与潮汐交叠成玻璃穹顶的共鸣，观测点记录到的首条同步波。</p>
+                  <dl class="dream-card__meta" aria-label="梦境参数">
+                    <dt class="dream-card__meta-key">时间戳</dt>
+                    <dd class="dream-card__meta-value">00:42</dd>
+                    <dt class="dream-card__meta-key">强度</dt>
+                    <dd class="dream-card__meta-value">脉动 63%</dd>
+                  </dl>
+                </div>
+              </article>
 
-          <div class="stream" data-aos="fade-up">
-            <div class="stream__marquee" data-stream>
-              <div class="stream__slide">
-                <img src="assets/images/dream-01.svg" alt="Stream image one" />
-              </div>
-              <div class="stream__slide">
-                <img src="assets/images/dream-02.svg" alt="Stream image two" />
-              </div>
-              <div class="stream__slide">
-                <img src="assets/images/dream-03.svg" alt="Stream image three" />
-              </div>
-              <div class="stream__slide">
-                <img src="assets/images/dream-04.svg" alt="Stream image four" />
-              </div>
-              <div class="stream__slide">
-                <img src="assets/images/dream-05.svg" alt="Stream image five" />
-              </div>
+              <article class="card dream-card" data-frag="浮光为迷雾上色" data-time="01:17" data-audio="dream-chime" tabindex="0">
+                <button class="dream-card__reset" type="button" data-card-reset aria-label="重置浮光沉香卡片">重置</button>
+                <figure class="dream-card__media">
+                  <img
+                    src="assets/images/Surreal Landscapes/Have you ever seen the sky split open.png"
+                    alt="天空裂开后倾泻浮光的梦境画面"
+                    loading="lazy"
+                  />
+                </figure>
+                <div class="dream-card__body">
+                  <h3 class="card__title">浮光沉香</h3>
+                  <p class="card__text">迷雾染上高频的金色泛光，嗅觉线索与声波微量盐分同步升高。</p>
+                  <dl class="dream-card__meta" aria-label="梦境参数">
+                    <dt class="dream-card__meta-key">时间戳</dt>
+                    <dd class="dream-card__meta-value">01:17</dd>
+                    <dt class="dream-card__meta-key">标记</dt>
+                    <dd class="dream-card__meta-value">色谱 4.1</dd>
+                  </dl>
+                </div>
+              </article>
+
+              <article class="card dream-card" data-frag="云桥折射黎明回声" data-time="02:08" tabindex="0">
+                <button class="dream-card__reset" type="button" data-card-reset aria-label="重置云桥折影卡片">重置</button>
+                <figure class="dream-card__media">
+                  <img
+                    src="assets/images/Surreal Landscapes/The city bends itself along the fissure.png"
+                    alt="城市沿裂隙自我弯折的梦境桥梁"
+                    loading="lazy"
+                  />
+                </figure>
+                <div class="dream-card__body">
+                  <h3 class="card__title">云桥折影</h3>
+                  <p class="card__text">裂缝上空的玻璃桥折射晨色，低频心跳延迟 320 毫秒才回到听觉。</p>
+                  <dl class="dream-card__meta" aria-label="梦境参数">
+                    <dt class="dream-card__meta-key">时间戳</dt>
+                    <dd class="dream-card__meta-value">02:08</dd>
+                    <dt class="dream-card__meta-key">脉络</dt>
+                    <dd class="dream-card__meta-value">桥域档案</dd>
+                  </dl>
+                </div>
+              </article>
+
+              <article class="card dream-card" data-frag="月影在溶洞呼吸" data-time="02:46" data-audio="dream-ember" tabindex="0">
+                <button class="dream-card__reset" type="button" data-card-reset aria-label="重置月影温室卡片">重置</button>
+                <figure class="dream-card__media">
+                  <img
+                    src="assets/images/Surreal Landscapes/The torn curtain of clouds is breathing.png"
+                    alt="云幕被撕裂后缓慢呼吸的梦境洞穴"
+                    loading="lazy"
+                  />
+                </figure>
+                <div class="dream-card__body">
+                  <h3 class="card__title">月影温室</h3>
+                  <p class="card__text">溶洞像植物温室吐纳着银蓝色的雾息，共振频段压制了所有外部噪声。</p>
+                  <dl class="dream-card__meta" aria-label="梦境参数">
+                    <dt class="dream-card__meta-key">时间戳</dt>
+                    <dd class="dream-card__meta-value">02:46</dd>
+                    <dt class="dream-card__meta-key">温差</dt>
+                    <dd class="dream-card__meta-value">-3℃</dd>
+                  </dl>
+                </div>
+              </article>
+
+              <article class="card dream-card" data-frag="裂隙引航深海余烬" data-time="03:21" tabindex="0">
+                <button class="dream-card__reset" type="button" data-card-reset aria-label="重置裂隙航道卡片">重置</button>
+                <figure class="dream-card__media">
+                  <img
+                    src="assets/images/Surreal Landscapes/Starlight echoes across the bridge.png"
+                    alt="星光在桥梁上回响的裂隙航道景象"
+                    loading="lazy"
+                  />
+                </figure>
+                <div class="dream-card__body">
+                  <h3 class="card__title">裂隙航道</h3>
+                  <p class="card__text">余烬沿裂隙排布成导航灯，船体震动与内耳液态陀螺同步抵消。</p>
+                  <dl class="dream-card__meta" aria-label="梦境参数">
+                    <dt class="dream-card__meta-key">时间戳</dt>
+                    <dd class="dream-card__meta-value">03:21</dd>
+                    <dt class="dream-card__meta-key">振幅</dt>
+                    <dd class="dream-card__meta-value">0.82</dd>
+                  </dl>
+                </div>
+              </article>
+
+              <article class="card dream-card" data-frag="零重力花园醒来" data-time="04:05" tabindex="0">
+                <button class="dream-card__reset" type="button" data-card-reset aria-label="重置零重力花园卡片">重置</button>
+                <figure class="dream-card__media">
+                  <img
+                    src="assets/images/Surreal Landscapes/weightless garden grows from the Earth’s core..png"
+                    alt="失重花园自地核生长的梦境景象"
+                    loading="lazy"
+                  />
+                </figure>
+                <div class="dream-card__body">
+                  <h3 class="card__title">零重力花园</h3>
+                  <p class="card__text">根系在失重中漂浮，气味记录里含有超饱和的柑橘波段。</p>
+                  <dl class="dream-card__meta" aria-label="梦境参数">
+                    <dt class="dream-card__meta-key">时间戳</dt>
+                    <dd class="dream-card__meta-value">04:05</dd>
+                    <dt class="dream-card__meta-key">迹线</dt>
+                    <dd class="dream-card__meta-value">花序 11</dd>
+                  </dl>
+                </div>
+              </article>
             </div>
           </div>
         </div>
