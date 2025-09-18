@@ -4,53 +4,103 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chaos Fragments Observatory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+            },
+            colors: {
+              night: '#070315',
+              mist: '#11072a',
+              pulse: '#c084fc',
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="styles/common.css" />
     <link rel="stylesheet" href="styles/page-3.css" />
   </head>
-  <body style="margin: 0; background-color: #04030a;">
-    <div class="chaos" data-chaos>
-      <header class="chaos__header">
-        <div class="chaos__meta">
-          <span class="chaos__tag">Chronicle // Page 3</span>
-          <h1 class="chaos__title">Shatter the Dream Lattice</h1>
-          <p class="chaos__subtitle">
-            Drift with the fragments, rupture the grid, and ride the pulse. Toggle the modes below to bend the subconscious field.
-          </p>
-        </div>
-        <div class="chaos__controls">
-          <button type="button" class="chaos__button" data-chaos-toggle>Enter Chaos</button>
-          <button type="button" class="chaos__button" data-chaos-shuffle>Shuffle</button>
-          <div class="chaos__hint">
-            <span>Press P for Panic • Hold to reveal fear</span>
-          </div>
-        </div>
-      </header>
+  <body class="layout">
+    <header class="layout__nav" data-header>
+      <nav class="navigation">
+        <a class="navigation__brand" href="index.html">Dream Subconscious</a>
+        <ul class="navigation__list">
+          <li><a class="navigation__link" href="index.html" data-nav-link>Atlas</a></li>
+          <li><a class="navigation__link" href="page-2.html" data-nav-link>Resonance</a></li>
+          <li><a class="navigation__link" href="page-3.html" data-nav-link>Chronicles</a></li>
+        </ul>
+      </nav>
+    </header>
 
-      <section class="chaos__stage" data-chaos-stage>
-        <div class="chaos__fragments" data-chaos-fragments>
-          <div class="chaos__fragment" data-fragment style="--fragment-image: url('/assets/sureal/fragment-01.png');"></div>
-          <div class="chaos__fragment" data-fragment style="--fragment-image: url('/assets/sureal/fragment-02.png');"></div>
-          <div class="chaos__fragment" data-fragment style="--fragment-image: url('/assets/sureal/fragment-03.png');"></div>
-          <div class="chaos__fragment" data-fragment style="--fragment-image: url('/assets/sureal/fragment-04.png');"></div>
-          <div class="chaos__fragment" data-fragment style="--fragment-image: url('/assets/sureal/fragment-05.png');"></div>
-          <div class="chaos__fragment" data-fragment style="--fragment-image: url('/assets/sureal/fragment-06.png');"></div>
-          <div class="chaos__fragment" data-fragment style="--fragment-image: url('/assets/sureal/fragment-07.png');"></div>
-          <div class="chaos__fragment" data-fragment style="--fragment-image: url('/assets/sureal/fragment-08.png');"></div>
-          <div class="chaos__fragment" data-fragment style="--fragment-image: url('/assets/sureal/fragment-09.png');"></div>
-          <div class="chaos__fragment" data-fragment style="--fragment-image: url('/assets/sureal/fragment-10.png');"></div>
-          <div class="chaos__fragment" data-fragment style="--fragment-image: url('/assets/sureal/fragment-11.png');"></div>
-          <div class="chaos__fragment" data-fragment style="--fragment-image: url('/assets/sureal/fragment-12.png');"></div>
+    <main class="layout__content">
+      <section class="section">
+        <div class="chaos" data-chaos>
+          <header class="chaos__header">
+            <div class="chaos__meta">
+              <span class="chaos__tag">Chronicle // Page 3</span>
+              <h1 class="chaos__title">Shatter the Dream Lattice</h1>
+              <p class="chaos__subtitle">
+                Drift with the fragments, rupture the grid, and ride the pulse. Toggle the modes below to bend the subconscious field.
+              </p>
+            </div>
+            <div class="chaos__controls">
+              <button type="button" class="chaos__button" data-chaos-toggle>Enter Chaos</button>
+              <button type="button" class="chaos__button" data-chaos-shuffle>Shuffle</button>
+              <div class="chaos__hint">
+                <span>Press P for Panic • Hold to reveal fear</span>
+              </div>
+            </div>
+          </header>
+
+          <section class="chaos__stage" data-chaos-stage>
+            <div class="chaos__fragments" data-chaos-fragments>
+              <div class="chaos__fragment" data-fragment data-image="assets/images/Surreal Landscapes/Fragments stitch dreams inside the storm.png"></div>
+              <div class="chaos__fragment" data-fragment data-image="assets/images/Surreal Landscapes/Have you ever seen the sky split open.png"></div>
+              <div class="chaos__fragment" data-fragment data-image="assets/images/Surreal Landscapes/Moonlight sets the tide for the pages.png"></div>
+              <div class="chaos__fragment" data-fragment data-image="assets/images/Surreal Landscapes/Paint dreams into a topographic map.png"></div>
+              <div class="chaos__fragment" data-fragment data-image="assets/images/Surreal Landscapes/Starlight echoes across the bridge.png"></div>
+              <div class="chaos__fragment" data-fragment data-image="assets/images/Surreal Landscapes/The city bends itself along the fissure.png"></div>
+              <div class="chaos__fragment" data-fragment data-image="assets/images/Surreal Landscapes/The torn curtain of clouds is breathing.png"></div>
+              <div class="chaos__fragment" data-fragment data-image="assets/images/Surreal Landscapes/weightless garden grows from the Earth’s core..png"></div>
+              <div class="chaos__fragment" data-fragment data-image="assets/images/Surreal Landscapes/Time slowly melts at the island’s edge..png"></div>
+              <div class="chaos__fragment" data-fragment data-image="assets/images/Surreal Landscapes/Fragments stitch dreams inside the storm.png"></div>
+              <div class="chaos__fragment" data-fragment data-image="assets/images/Surreal Landscapes/Moonlight sets the tide for the pages.png"></div>
+              <div class="chaos__fragment" data-fragment data-image="assets/images/Surreal Landscapes/The city bends itself along the fissure.png"></div>
+            </div>
+            <div class="chaos__overlay chaos__overlay--fear" aria-hidden="true"></div>
+            <div class="chaos__overlay chaos__overlay--noise" aria-hidden="true"></div>
+          </section>
+
+          <footer class="chaos__footer">
+            <p class="chaos__note">
+              Drift returns automatically after you release the fear layer. Shuffle reassigns fragments to new trajectories.
+            </p>
+          </footer>
         </div>
-        <div class="chaos__overlay chaos__overlay--fear" aria-hidden="true"></div>
-        <div class="chaos__overlay chaos__overlay--noise" aria-hidden="true"></div>
       </section>
+    </main>
 
-      <footer class="chaos__footer">
-        <p class="chaos__note">
-          Drift returns automatically after you release the fear layer. Shuffle reassigns fragments to new trajectories.
-        </p>
-      </footer>
-    </div>
+    <footer class="layout__footer footer">
+      <div class="footer__inner">
+        <p>© 2024 Dream Subconscious. Chronicles maintained for the dream commons.</p>
+        <div class="footer__links">
+          <a class="footer__link" href="index.html">Dream Atlas</a>
+          <a class="footer__link" href="page-2.html">Resonance Lab</a>
+        </div>
+      </div>
+    </footer>
 
+    <script src="scripts/common.js" defer></script>
     <script src="scripts/page-3.js" defer></script>
   </body>
 </html>

@@ -134,6 +134,10 @@
   justify-items: start;
 }
 
+.flip-card.is-flipped .flip-card__face--front {
+  transform: rotateY(-180deg);
+}
+
 .flip-card.is-flipped .flip-card__face--back {
   transform: rotateY(0deg);
 }

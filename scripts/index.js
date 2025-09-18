@@ -22,7 +22,6 @@
     cards.forEach((card) => {
       card.addEventListener('click', onCardClick);
       card.addEventListener('keydown', onCardKey);
-      card.addEventListener('blur', () => card.classList.remove('is-flipped'));
     });
   };
 

@@ -134,8 +134,20 @@
   justify-items: start;
 }
 
+.flip-card.is-flipped .flip-card__face--front {
+<<<<<<< ours
+  transform: rotateY(180deg);
+}
+
+.flip-card.is-flipped .flip-card__face--back {
+  transform: rotateY(540deg);
+=======
+  transform: rotateY(-180deg);
+}
+
 .flip-card.is-flipped .flip-card__face--back {
   transform: rotateY(0deg);
+>>>>>>> theirs
 }
 
 .flip-card__face--image {

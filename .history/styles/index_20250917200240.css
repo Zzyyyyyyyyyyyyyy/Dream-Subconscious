@@ -134,10 +134,6 @@
   justify-items: start;
 }
 
-.flip-card.is-flipped .flip-card__face--back {
-  transform: rotateY(0deg);
-}
-
 .flip-card__face--image {
   padding: 0;
   display: block;

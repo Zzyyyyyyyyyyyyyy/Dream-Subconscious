@@ -15,9 +15,20 @@
   let panicActive = false;
   let fearRevealTimer = null;
 
-  const driftData = new Map();
-
   const randomBetween = (min, max) => Math.random() * (max - min) + min;
+
+  const applyFragmentImages = () => {
+    fragments.forEach((fragment) => {
+      const imagePath = fragment.dataset.image;
+      if (!imagePath) return;
+
+      const encodedPath = encodeURI(imagePath);
+      const imageValue = `url("${encodedPath}")`;
+
+      fragment.style.backgroundImage = imageValue;
+      fragment.style.setProperty('--fragment-image', imageValue);
+    });
+  };
 
   const assignDriftProperties = (fragment) => {
     const settings = {
@@ -30,8 +41,6 @@
       floatDuration: randomBetween(7.5, 13.5),
       floatDelay: randomBetween(-6, 6),
     };
-
-    driftData.set(fragment, settings);
 
     fragment.style.setProperty('--x', `${settings.x}%`);
     fragment.style.setProperty('--y', `${settings.y}%`);
@@ -100,6 +109,7 @@
     root.classList.remove('is-fear');
   };
 
+  applyFragmentImages();
   shuffleFragments();
   toggleButton.setAttribute('aria-pressed', 'false');
 
